@@ -15,11 +15,11 @@ class LogoutTestCase(unittest.TestCase):
             cls.url = "http://localhost"
 
     def test(self):
-        self.login_correct_credentials()
+        self.login_page()
         self.index_page()
         self.logout()
 
-    def login_correct_credentials(self):
+    def login_page(self):
         login_url = self.url +'/login.php'
         self.browser.get(login_url)
 
