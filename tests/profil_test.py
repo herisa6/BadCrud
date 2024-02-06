@@ -15,9 +15,9 @@ class ProfilePictureUploadTestCase(unittest.TestCase):
             cls.url = "http://localhost"
 
     def test(self):
-        self.login_correct_credentials()
-        self.go_to_profile_page()
-        self.upload_profile_picture()
+        self.login_page()
+        self.profil_page()
+        self.upload_profil_image()
 
     def login_correct_credentials(self):
         login_url = self.url + '/login.php'
@@ -27,11 +27,11 @@ class ProfilePictureUploadTestCase(unittest.TestCase):
         self.browser.find_element(By.ID, 'inputPassword').send_keys('nimda666!')
         self.browser.find_element(By.TAG_NAME, 'button').click()
 
-    def go_to_profile_page(self):
+    def profil_page(self):
         profile_url = self.url + '/profil.php'
         self.browser.get(profile_url)
 
-    def upload_profile_picture(self):
+    def upload_profil_image(self):
         file_input = self.browser.find_element(By.ID, 'formFile')
         
         image_path = os.path.join(os.getcwd(), 'tests', 'test_images', 'image.jpg')
