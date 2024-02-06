@@ -21,12 +21,12 @@ class CreateContactTestCase(unittest.TestCase):
         cls.name_query = ''.join(random.choices(string.ascii_letters, k=10))
 
     def test(self):
-        self.login_correct_credentials()
-        self.create_contact()
-        self.search_contact()
-        self.delete_contact()
+        self.login_page()
+        self.create_page()
+        self.search_page()
+        self.delete_action()
 
-    def login_correct_credentials(self):
+    def login_page(self):
         login_url = self.url + '/login.php'
         self.browser.get(login_url)
 
@@ -34,12 +34,12 @@ class CreateContactTestCase(unittest.TestCase):
         self.browser.find_element(By.ID, 'inputPassword').send_keys('nimda666!')
         self.browser.find_element(By.TAG_NAME, 'button').click()
 
-    def create_contact(self):
+    def create_page(self):
         create_url = self.url + '/create.php'
         self.browser.get(create_url)
 
         self.browser.find_element(By.ID, 'name').send_keys(self.name_query)
-        self.browser.find_element(By.ID, 'email').send_keys('test@example.com')
+        self.browser.find_element(By.ID, 'email').send_keys('jeno@mail.com')
         self.browser.find_element(By.ID, 'phone').send_keys('1234567890')
         self.browser.find_element(By.ID, 'title').send_keys('Developer')
 
@@ -49,7 +49,7 @@ class CreateContactTestCase(unittest.TestCase):
         actual_title = self.browser.title
         self.assertEqual(index_page_title, actual_title)
 
-    def search_contact(self):
+    def search_page(self):
         search_query = self.name_query
         self.browser.find_element(By.ID, 'employee_filter').find_element(By.TAG_NAME, 'input').send_keys(search_query)
         self.browser.find_element(By.ID, 'employee_filter').find_element(By.TAG_NAME, 'input').send_keys(Keys.ENTER)
@@ -58,7 +58,7 @@ class CreateContactTestCase(unittest.TestCase):
         searched_contact_exists = self.browser.find_elements(By.XPATH, f"//td[contains(text(), '{searched_contact_name}')]")
         self.assertTrue(searched_contact_exists)
 
-    def delete_contact(self):
+    def delete_action(self):
         actions_section = self.browser.find_element(By.XPATH, "//tr[@role='row'][1]//td[contains(@class, 'actions')]")
         delete_button = actions_section.find_element(By.XPATH, ".//a[contains(@class, 'btn-danger')]")
 
