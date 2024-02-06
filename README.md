@@ -1,4 +1,1 @@
-# Just Bad CRUD App
-
-user : admin\
-pass : nimda666!
+UAS Pengujian Perangkat Lunak_Herisa
