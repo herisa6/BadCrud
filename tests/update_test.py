@@ -39,7 +39,7 @@ class UpdateContactTestCase(unittest.TestCase):
         self.browser.get(create_url)
 
         self.browser.find_element(By.ID, 'name').send_keys(self.name_query)
-        self.browser.find_element(By.ID, 'email').send_keys('test@example.com')
+        self.browser.find_element(By.ID, 'email').send_keys('mark@mail.com')
         self.browser.find_element(By.ID, 'phone').send_keys('1234567890')
         self.browser.find_element(By.ID, 'title').send_keys('Developer')
 
